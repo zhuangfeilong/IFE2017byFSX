@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>三栏布局</title>
+</head>
+<body>
+  <div class="container clearfix">
+    <div class="left team clearfix">
+      <div class="left thumbnail">
+        <img src="deluxelogo.png" id="logo" alt="deluxe">
+      </div>
+      <p>镜花水月</p>
+    </div>
+    <div class="right staff">
+      <div class="thumbnail">
+        <p>这个年纪</p>
+        <p>齐一</p>
+      </div>
+      <div class="thumbnail">
+        <p>深夜书店</p>
+        <p>许嵩</p>
+      </div>
+      <div class="thumbnail">
+        <p>世界之外</p>
+        <p>任然</p>
+      </div>
+      <div class="thumbnail">
+        <p>春风十里</p>
+        <p>鹿先森</p>
+      </div>
+    </div>
+    <div class="content">
+      <p>春风十里</p>
+      <p>你在远方的山上，春风十里。今天的风吹向你，下了雨。
+      我说所有的酒，都不如你。</p>
+      <p>春风十里 五十里 一百里 体测八百米 海底两万里 德芙巧克力 香草味八喜 可可布朗尼 榴莲菠萝蜜 芝士玉米粒 鸡汁土豆泥 黑椒牛里脊 黄焖辣子鸡 红烧排骨酱醋鱼 不如你 全都不如你</p>
+      <p>春风十里，不如你。 夏阳满山，不如你。 秋雨淅淅，不如你。 冬雪皑皑，不如你。 我说所有的酒，都不如你。</p>
+      <p>愿漂泊的人都有酒喝 愿孤独的人都会唱歌。 愿相爱的人都有未来，愿等待的人都有回答。 愿孤单的人不必永远逞强，愿逞强的人身边永远都有个肩膀。 愿肩膀可以接住你的欢喜忧伤，愿有情人永生执手相望。 愿你如阳光，明媚不忧伤；愿你如月光，明亮不清冷。 愿你最爱的人，也最爱你。</p>
+      <p>惟是少年时，落拓高醺后。与你万人丛中，轻轻一握手。</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae minima neque tempora omnis eaque nemo nihil nisi obcaecati. Placeat nostrum nesciunt, cumque incidunt porro, voluptatibus quo fuga optio consequuntur sit.</p>
+    </div>
+  </div>
+</body>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    font-size: 14px;
+    margin-top: 0;
+  }
+  .container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #eee;
+    border: #999 1px solid;
+  }
+  .content {
+    width: auto;
+    margin-left: 200px;
+    margin-right: 180px;
+    padding: 20px;
+    background-color: #fff;
+    border: #999 1px solid; 
+  }
+  .right {
+    width: 100px;
+    padding: 20px;
+    background-color: #fff;
+    border: #999 1px solid;
+  }
+  .staff .thumbnail {
+    margin-top: 15px;
+  }
+  #logo {
+    width: 100px;
+    height: 100px;
+  }
+  .thumbnail {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 5px;
+    background-color: #eee;
+    border: #999 1px solid;
+  }
+  .thumbnail p:first-child {
+    margin-top: 30px;
+  }
+  .clearfix {
+    overflow: auto;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  @media screen and (max-width: 768px) {
+    .team
+    .staff
+    .main {
+      float: none;
+      width: auto;
+      margin-bottom: 20px;
+    }
+    .main {
+      margin: 0 auto;
+    }
+  }
+  .team {
+    height: 120px;
+    width: 200px;
+    display: block;
+
+  }
+  .team p {
+    font-size: 20px;
+    color: red;
+    line-height: 100px;
+  }
+  .content p:first-child {
+    font-size: 20px;
+    color: blue;
+  }
+
+</style>
+</html>
