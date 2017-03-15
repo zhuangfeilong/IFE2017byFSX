@@ -214,15 +214,17 @@
       <input type="password" id="repassword">
     </div>
     <div class="container2">
-  		<!-- <label>性别</label>
-				<input type="radio" id="nan" name="gender">
-				<label for="nan">男</label>
-				<input type="radio" id="nv" name="gender">
-				<label for="nv">女</label> -->
-  		<label>请输入你对这部剧的评价</label><br>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+  		<label>性别：</label>
+        <input type="radio" id="nan" name="gender">
+        <span for="nan">男</span>
+        <input type="radio" id="nv" name="gender">
+        <span for="nv">女</span>
     </div>
-  		<input type="submit" value="提交评论">
+    <div class="container2">
+  		<label for="pinglun">请输入你对这部剧的评价</label><br>
+      <textarea id="pinglun" cols="30" rows="10"></textarea>
+    </div>
+  		<input type="submit" value="提交评论" id="button">
   </form>
 </main>
 <footer>
@@ -243,9 +245,12 @@
     font-size: 100%;
     padding-top: .1em;
     padding-right: .25em;
-    width: 12em;
+    width: 25em;
     text-align: right;
     float: left;
+  }
+  #button {
+    margin-left: 200px;
   }
   footer {
     background-color: #343434;
