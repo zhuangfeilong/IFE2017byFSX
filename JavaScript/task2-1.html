@@ -5,23 +5,46 @@
     <title>IFE JavaScript Task 01</title>
   </head>
 <body>
-
   <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
-  <button id="button">确认填写</button>
-
+  <button id="button" onclick="air()">确认填写</button>
+  <button id="button2">DOM0级事件</button>
+  <button id="button3">DOM2级事件</button>
   <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
 
 <script type="text/javascript">
 
-(function() {
+ 
   /*    
   在注释下方写下代码
   给按钮button绑定一个点击事件
   在事件处理函数中
   获取aqi-input输入的值，并显示在aqi-display中
   */
+  var oInput=document.getElementById('aqi-input');
+  // var oButton=document.getElementById('button');
+  var oDisplay=document.getElementById('aqi-display');
+  var oButton2=document.getElementById('button2');
+  var oButton3=document.getElementById('button3');
+  
+  //HTML 事件
+  function air() {
+    oDisplay.innerHTML=oInput.value;
+  };
+  //DOM 0级事件
+  oButton2.onclick=air;
 
-})();
+  //DOM 2级事件
+  function addair(element, eventType, air) {
+    if (element.addEventListener) {
+        element.addEventListener(eventType, air, false);
+    } else {
+      alert("你的浏览器暂不支持！")
+    }
+  };
+  addair(oButton3, "click", air);
+
+
+
 
 </script>
 </body>
