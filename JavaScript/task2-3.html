@@ -14,6 +14,11 @@
     <li>深圳空气质量：<b>40</b></li>
     <li>福州空气质量：<b>32</b></li>
     <li>成都空气质量：<b>90</b></li>
+    <li>杭州空气质量：<b>77</b></li>
+    <li>诸暨空气质量：<b>79</b></li>
+    <li>吉林空气质量：<b>90</b></li>
+    <li>西湖空气质量：<b>27</b></li>
+    <li>绍兴空气质量：<b>80</b></li>
   </ul>
 
   <ul id="resort">
@@ -26,6 +31,7 @@
   </ul>
 
   <button id="sort-btn">排序</button>
+  <button id="clear-btn">Clear</button>
 
 <script type="text/javascript">
 
@@ -34,11 +40,18 @@
  * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
  * 返回一个数组，格式见函数中示例
  */
+  const sourceCities = document.querySelectorAll('#source li');
+  const arratOfCities = Array.from(sourceCities);
+  const aqiList = document.getElementById('resort');
+  const sortBtn = document.getElementById('sort-btn');
+  const clearBtn = document.getElementById('clear-btn');
 function getData() {
   /*
   coding here
   */
-
+  const data = arratOfCities
+  .map(city => city.textContent.split('空气质量：'))
+  .map(city => [city[0], Number(city[1])])
   /*
   data = [
     ["北京", 90],
@@ -57,7 +70,15 @@ function getData() {
  * 返回一个排序后的数组
  */
 function sortAqiData(data) {
+  const sortedCity = data.sort((a, b) => {
+    return b[1] - a[1];
+  });
 
+  const mappedCity = sortedCity.map(city => {
+    return `<li>第${sortedCity.indexOf(city)+1}名: ${city[0]}, ${city[1]}</li>` 
+  });
+
+  return mappedCity;
 }
 
 /**
@@ -66,7 +87,9 @@ function sortAqiData(data) {
  * 格式见ul中的注释的部分
  */
 function render(data) {
-
+  data.forEach(city => {
+    aqiList.innerHTML += city;
+  });
 }
 
 function btnHandle() {
@@ -74,12 +97,27 @@ function btnHandle() {
   aqiData = sortAqiData(aqiData);
   render(aqiData);
 }
+// function clearC() {
+//   data.forEach(city => {
+//     aqiList.innerHTML = ''
+//   })
+// }
+// function clearT() {
+//   var clearData = {}
+//   clearC(clearData);
+// }
 
 function init() {
 
   // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-
+  sortBtn.addEventListener('click', btnHandle)
 }
+
+
+// function clearSort() {
+//   clearBtn.addEventListener('click', clearT)
+// }
+
 
 init();
 
