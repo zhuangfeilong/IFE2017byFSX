@@ -34,21 +34,23 @@ var aqiData = [
   */
   const aqiList = document.getElementById('aqi-list');
   // 获取空气质量指数大于60的城市
-  const filterCity = aqiData.filter(city => {
-    return city[1] > 60;
+    const filterCity = aqiData.filter(Number => {
+    return Number[1] > 60;
   });
   // 将获取到的城市按照空气质量指数进行排序
   const sortedCity = filterCity.sort((a, b) => {
     return b[1] - a[1];
   });
   // 对排好序的数据添加其他内容，显示到网页之中
-  const hzCity = sortedCity.map(city => {
-    return `<li>第${sortedCity.indexOf(city)+1}名：${city[0]}, ${city[1]}</li>`
+  const mappedCity = sortedCity.map(city => {
+    // return `<li>第${sortedCity.indexOf(city)+1}名：${city[0]}, ${city[1]}</li>`
+    return `<li>第${sortedCity.indexOf(city)+1}名: ${city[0]}, ${city[1]}</li>` 
   });
   // 将数据添加到HTML结构中
-  hzCity.forEach(city => {
+  mappedCity.forEach(city => {
     aqiList.innerHTMl += city;
   });
+
 })();
 
 </script>
