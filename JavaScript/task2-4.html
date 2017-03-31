@@ -34,7 +34,6 @@
     
 //   }
 // }
-
 /* 左侧插入数字 */
 function leftIn() {
   var item = createItem();
@@ -99,12 +98,25 @@ function bindEventForItem(item) {
 /* 创建一个item */
 function createItem() {
   var item = document.createElement("div");
-  var content = document.getElementById("key").value;
+  var content = document.getElementById("key");
 
-  document.getElementById("key").value = "";
-  item.className = "item-num";
-  item.innerHTML = content;
+  if (content.value=="") {
+    alert("请输入一个有效数字！")
+  } 
+   else if (!isNaN(content.value)){
+    // var item = document.createElement("div");
+    var content = document.getElementById("key");
+    item.className = "item-num";
+    item.innerHTML = content.value;
+    content.value = "";
+  } else {
+    alert("这不是一个有效的数字，请重新输入！")
+  }
   bindEventForItem(item);
+  // document.getElementById("key").value = "";
+  // item.className = "item-num";
+  // item.innerHTML = content;
+  // bindEventForItem(item);
 
   return item;
 }
