@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+<h1>数字队列</h1>
+  <div class="container">
+    <div class="airControl">
+      <input id="key" type="text">
+      <button class="btn" id="left-in">左侧入</button>
+      <button class="btn" id="right-in">右侧入</button>
+      <button class="btn" id="left-out">左侧出</button>
+      <button class="btn" id="right-out">右侧出</button>
+    </div>
+    <div id="number-array">
+      <div class="number-block" id="number-block"></div>
+    </div>
+  </div>
+<script type="text/javascript">
+// const leftIn = document.getElemntById('left-in');
+// const rightIn = document.getElementById('right-in') ;
+// const leftOut = document.getElementById('left-out');
+// const rightOut = document.getElementsById('right-out');
+// const num = document.getElementById('key');
+// const numList = document.getElementsById('number-array');
+
+// function insertNum() {
+//   if(num.value=="") {
+//     alert("亲输入一个数字")；
+//   }
+//   if(!isNaN(num.value)) {
+    
+//   }
+// }
+
+/* 左侧插入数字 */
+function leftIn() {
+  var item = createItem();
+  item.classList.add("slideInLeft");
+
+  var numberBlock = document.getElementById("number-block");
+  numberBlock.insertBefore(item, numberBlock.firstElementChild);
+}
+/* 右侧插入数字 */
+function rightIn() {
+  var item = createItem();
+  item.classList.add("slideInRight");
+
+  document.getElementById("number-block").appendChild(item);
+}
+/* 左侧删除数字 */
+function leftOut() {
+  var numberBlock = document.getElementById("number-block");
+  numberBlock.firstElementChild.classList.add("slideOutLeft");
+
+  var handler = setTimeout(function () {
+    numberBlock.removeChild(numberBlock.firstElementChild);
+    clearTimeout(handler);
+  }, 500);
+}
+/* 右侧删除数字 */
+function rightOut(){
+  var numberBlock = document.getElementById("number-block");
+  numberBlock.lastElementChild.classList.add("slideOutRight");
+  
+  var handler = setTimeout(function () {
+    numberBlock.removeChild(numberBlock.lastElementChild);
+    clearTimeout(handler);
+  }, 500)
+}
+/* 点击按钮时对数字队列进行数据修改的处理 */
+function removeItem() {
+  var item = this;
+  var numberBlock = document.getElementsById("number-block");
+
+  var classes = item.className.split(" ");
+  classes.push("sliderOutRight");
+  item.className = classes.join(" ");
+
+  var handler = setTimeout(function () {
+    numberBlock.removeChild(item);
+    clearTimeout(handler);
+  }, 500);
+}
+/* 为按钮绑定上事件 */
+function bindEventForBtn () {
+  document.getElementById("left-in").onclick = leftIn;
+  document.getElementById("right-in").onclick = rightIn;
+  document.getElementById("left-out").onclick = leftOut;
+  document.getElementById("right-out").onclick = rightOut;
+
+}
+/* 为数字流绑定上事件 */
+function bindEventForItem(item) {
+  item.onclick = removeItem;
+}
+/* 创建一个item */
+function createItem() {
+  var item = document.createElement("div");
+  var content = document.getElementById("key");
+
+  if (Number(content.value) >= 10 && Number(content.value) <= 100){
+    // var item = document.createElement("div");
+    var content = document.getElementById("key");
+    item.className = "item-num";
+    // item.innerHTML = content.value;
+    document.getElementsByClassName("item-num").style.color: `${content.value}`px;
+    content.value = "";
+  } else {
+    content.focus();
+    alert("这不是一个有效的数字，请重新输入10-100以内的数字！");
+  }
+  bindEventForItem(item);
+  // document.getElementById("key").value = "";
+  // item.className = "item-num";
+  // item.innerHTML = content;
+  // bindEventForItem(item);
+
+  return item;
+}
+window.onload = bindEventForBtn;
+
+</script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    margin: 20px auto;
+    text-align: center;
+    color: aqua;
+  }
+  .container {
+    width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px #5CD9EF;
+  }
+  .airControl{
+    display: flex;
+    align-items: center;
+  }
+  .airControl input {
+    height: 3em;
+    border: 2px solid #0078D7;
+    margin-right: 12px;
+    text-indent: 1em;
+    transition: box-shadow .2s;
+    border-radius: 7px;
+  }
+  .airControl input:focus {
+    box-shadow: 0 0 20px #C62F2F;
+  }
+  .airControl input:hover {
+    background-color: #dddddd;
+  }
+
+  .btn {
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid #7C7C7C;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 7px;
+    color: #E72D3B;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color: #85D5E5 .3s;
+  }
+  .btn:hover {
+    background-color: #7DBDE0;
+  }
+  .number-block {
+    /*float: left;*/
+    min-height: 100px;
+    height: 120px;
+    display: flex;
+    border: 1px solid #7E7E7E;
+    align-items: center;
+  }
+  .item-num {
+    background-color: #0163AE;
+    /*width: auto;*/
+    min-width: 20px;
+    /*height: 70px;*/
+    margin: 10px;
+    color: red;
+    font-size: 40px;
+    border: 1px solid #0163AE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+
+    /*overflow: scroll;    */
+  } 
+  @keyframes slideInLeft {
+    from {
+        transform: translate3d(-100%, 0, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.slideInLeft {
+    animation: slideInLeft 1s;
+}
+@keyframes slideInRight {
+    from {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.slideInRight {
+    animation: slideInRight 1s;
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate3d(-100%, 0, 0);
+        opacity: 0;
+    }
+}
+
+.slideOutLeft {
+    animation: slideOutLeft 1s;
+}
+
+@keyframes slideOutRight {
+    from {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+    }
+    to {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+    }
+}
+
+.slideOutRight {
+    animation: slideOutRight 1s;
+}
+</style>
+</body>
+</html>
