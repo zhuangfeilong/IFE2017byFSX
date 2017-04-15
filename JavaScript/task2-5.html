@@ -31,7 +31,7 @@
 //     alert("亲输入一个数字")；
 //   }
 //   if(!isNaN(num.value)) {
-    
+
 //   }
 // }
 
@@ -64,7 +64,7 @@ function leftOut() {
 function rightOut(){
   var numberBlock = document.getElementById("number-block");
   numberBlock.lastElementChild.classList.add("slideOutRight");
-  
+
   var handler = setTimeout(function () {
     numberBlock.removeChild(numberBlock.lastElementChild);
     clearTimeout(handler);
@@ -100,14 +100,16 @@ function bindEventForItem(item) {
 function createItem() {
   var item = document.createElement("div");
   var content = document.getElementById("key");
-
   if (Number(content.value) >= 10 && Number(content.value) <= 100){
     // var item = document.createElement("div");
     var content = document.getElementById("key");
+    const numHeight = Number(content.value);
     item.className = "item-num";
     // item.innerHTML = content.value;
-    document.getElementsByClassName("item-num").style.color: `${content.value}`px;
-    content.value = "";
+    // item.textContent = content.value;
+    item.style.height = content.value + "px";
+    // item.style.bottom = (100 - content.value)/2 + "px";
+    
   } else {
     content.focus();
     alert("这不是一个有效的数字，请重新输入10-100以内的数字！");
@@ -169,7 +171,7 @@ window.onload = bindEventForBtn;
     color: #E72D3B;
     text-align: center;
     text-decoration: none;
-    transition: background-color: #85D5E5 .3s;
+    transition: background-color #85D5E5 .3s;
   }
   .btn:hover {
     background-color: #7DBDE0;
@@ -191,13 +193,13 @@ window.onload = bindEventForBtn;
     color: red;
     font-size: 40px;
     border: 1px solid #0163AE;
-    display: flex;
+    display: flex-bottom;
     align-items: center;
     justify-content: center;
     align-items: center;
 
     /*overflow: scroll;    */
-  } 
+  }
   @keyframes slideInLeft {
     from {
         transform: translate3d(-100%, 0, 0);
